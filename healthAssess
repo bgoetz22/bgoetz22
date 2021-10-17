@@ -1,0 +1,95 @@
+package week4;
+
+import java.util.Scanner;
+
+public class W4BGhealthAssess {
+
+
+public static void main(String[] args) {
+
+
+System.out.println("Welcome to Boris Goetz's the Health Assessment");
+System.out.println("---------------------------------");
+
+Scanner scan = new Scanner(System.in);
+
+System.out.println("What's your first name?");
+String firstName = scan.nextLine();
+System.out.println(firstName);
+
+System.out.println("What's your last name?");
+String lastName = scan.nextLine();
+System.out.println(lastName);
+
+System.out.println("How old are you?");
+int age = scan.nextInt();
+System.out.println(age);
+
+System.out.println("What is your gender (1=male, 2=female?");
+int gender = scan.nextInt();
+System.out.println(gender);
+
+System.out.println("How tall are you (inches)?");
+double heightInches = scan.nextDouble();
+System.out.println(heightInches);
+
+System.out.println("What's your weight in lb (judgement free zone: your weight does not define you)?");
+double weightPounds = scan.nextDouble();
+System.out.println(weightPounds);
+
+System.out.println("Estimate the number of hours of sleep that you get.");
+double hoursSleep = scan.nextDouble();
+System.out.println(hoursSleep);
+
+System.out.println("Please explain what your main goals are.");
+String quote = scan.next();
+quote += scan.nextLine();
+
+System.out.println("Thank you " + firstName + " " + lastName + ", you are " + age + " years old");
+System.out.println(" and your goal is " + quote);
+
+double heightCm = heightInches * 2.54;
+
+double weightKg = weightPounds / 2.20462;
+
+System.out.println("The Harris-Benedict Equation is often used to estimate basal metabolic rate.");
+
+System.out.println("---------------------------------");
+
+String bmrMen = (88.362 + (13.397 * weightKg) + (4.799 * heightCm) - (5.677 * age) + " kcal is your basal metabolic rate");
+String bmrWomen = (447.593 + (9.247 * weightKg) + (3.098 * heightCm) - (4.330 * age) + " kcal is your basal metabolic rate");
+
+
+System.out.println("How active are you?" +
+" If you rarely exercise, select 1" +
+" If you exercise on 1 to 3 days per week, select 2" +
+" If you exercise on 3 to 5 days per week, select 3" +
+" If you exercise 6 to 7 days per week, select 4" +
+" If you exercise every day and have a physical job or if you often" +
+" exercise twice a day, select 5");
+int mult = scan.nextInt();
+System.out.println(mult);
+
+System.out.println("What's your current body fat (enter 20 if 20%?");
+double bfPerc = scan.nextDouble();
+System.out.println(bfPerc);
+double bfDec = bfPerc / 100;
+System.out.println("You currently have " + (bfDec * weightPounds) + " lb of fat.");
+System.out.println("You currently have " + (weightPounds - (bfDec * weightPounds)) + " lb of lean body mass.");
+System.out.println("What's your weight goal (enter 150 if 150 lb?");
+double goalWeight = scan.nextDouble();
+System.out.println(goalWeight);
+System.out.println("At " + goalWeight + ", if you maintain your lean body mass, you would be at " + ((1 - (((weightPounds - (bfDec * weightPounds)) / goalWeight))) * 100) + "% body fat.");
+
+if (mult == 1) {
+System.out.println(1.2);
+} else if (mult == 2) {
+System.out.println(1.375);
+} else if (mult == 3) {
+System.out.println(1.55);
+} else if (mult == 4) {
+System.out.println(1.725);
+} else if (mult == 5) {
+System.out.println(1.9);
+} else
+System.out.println("Please select a valid option 1-5.");
